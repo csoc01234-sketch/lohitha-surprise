@@ -9,14 +9,17 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background-color: #0d0d0d; color: #ffffff; font-family: 'Poppins', sans-serif; overflow-x: hidden; text-align: center; }
         
-        /* Floating Hearts Animation */
-        .heart-particle { position: fixed; color: #e84393; font-size: 1rem; pointer-events: none; animation: floatUp 4s linear infinite; opacity: 0.7; z-index: 1; }
-        @keyframes floatUp { 0% { transform: translateY(100vh) scale(0.5); opacity: 1; } 100% { transform: translateY(-10vh) scale(1.2); opacity: 0; } }
+        /* Falling Hearts & Petals Animation */
+        .falling-element { position: fixed; top: -10%; pointer-events: none; animation: fallDown linear infinite; z-index: 100; }
+        @keyframes fallDown {
+            0% { transform: translateY(0vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(115vh) rotate(360deg); opacity: 0; }
+        }
 
-        /* Container Structure */
+        /* Main Layout Container */
         .container { max-width: 420px; margin: 0 auto; padding: 20px 15px; position: relative; z-index: 10; }
         
-        /* Header Section */
+        /* Header Profile */
         .sub-head { color: #ff7675; font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; margin-top: 10px; }
         .main-title { font-family: 'Cinzel', serif; font-size: 2.2rem; margin: 10px 0; color: #fff; }
         .profile-frame { width: 140px; height: 140px; border-radius: 50%; border: 3px solid #ff7675; padding: 4px; margin: 15px auto; box-shadow: 0 0 20px rgba(255, 118, 117, 0.4); }
@@ -28,17 +31,30 @@
         .envelope-wrapper:active { transform: scale(0.98); }
         .letter-box { display: none; background: #fffdf9; color: #2d3436; padding: 20px; border-radius: 10px; text-align: left; font-family: 'Mandali', 'Poppins', sans-serif; font-size: 0.98rem; line-height: 1.8; margin-top: 12px; animation: fadeIn 0.5s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
 
-        /* Section Dividers */
+        /* Section Banners */
         .quote-banner { margin: 35px 0 15px; font-family: 'Cinzel', serif; font-size: 1.2rem; color: #fab1a0; font-style: italic; }
 
-        /* Polaroid Gallery */
+        /* Couple Vector Animation Graphic */
+        .couple-art-container { margin: 20px 0; display: flex; justify-content: center; align-items: center; }
+        .couple-art { width: 100%; max-width: 280px; border-radius: 15px; box-shadow: 0 10px 20px rgba(255, 118, 117, 0.2); }
+
+        /* Polaroid Gallery - FIXED IMAGE DISPLAY */
         .polaroid-stack { margin: 20px 0; }
         .polaroid-card { background: #ffffff; padding: 12px 12px 25px 12px; border-radius: 4px; margin: 25px auto; width: 92%; box-shadow: 0 8px 20px rgba(0,0,0,0.6); transform: rotate(-1deg); }
         .polaroid-card:nth-child(even) { transform: rotate(1deg); }
-        .polaroid-card img { width: 100%; height: 280px; object-fit: cover; border-radius: 2px; }
+        
+        /* Face Cut Fix: Height auto, object-fit & object-position added */
+        .polaroid-card img { 
+            width: 100%; 
+            max-height: 380px; 
+            object-fit: contain; 
+            object-position: top; 
+            background-color: #f8f9fa;
+            border-radius: 2px; 
+        }
         .card-tag { color: #636e72; font-size: 0.85rem; text-align: right; margin-top: 10px; font-weight: bold; }
 
-        /* Interactive Surprise Trigger */
+        /* Surprise Button */
         .btn-surprise { background: linear-gradient(45deg, #ff7675, #d63031); color: #fff; border: none; padding: 14px 25px; border-radius: 30px; font-size: 1rem; font-weight: bold; cursor: pointer; box-shadow: 0 5px 15px rgba(232, 67, 147, 0.4); margin: 25px 0; }
         .surprise-box { display: none; background: #1e272e; padding: 20px; border-radius: 15px; border: 1px solid #ff7675; margin: 15px 0; }
 
@@ -53,47 +69,68 @@
 <body>
 
     <div class="container">
+        <!-- TOP PROFILE -->
         <div class="sub-head">READY FOR A LITTLE SURPRISE?</div>
         <h1 class="main-title">Happy Birthday Lohitha ❤️</h1>
-        <p style="color:#d63031; font-size:0.9rem;">Vishwa created something special for you.</p>
+        <p style="color:#d63031; font-size:0.9rem;">Viswa created something special for you.</p>
         
         <div class="profile-frame">
             <img src="1001425373.jpg" alt="Lohitha">
         </div>
         <div class="scroll-indicator">Scroll Down To See ❤️ 👇</div>
 
+        <!-- ROMANTIC ENVELOPE LETTER -->
         <div class="envelope-wrapper" onclick="toggleLetter()">
             <div style="font-weight:bold; font-size:1.1rem;">TAP TO OPEN LETTER ✉️</div>
             <div id="letter" class="letter-box">
                 <b>Hey Bangaram... ❤️</b><br><br>
                 Happy Birthday to my world! 🎂✨<br><br>
-                Nee thoti gadipinachina prathi kshanam naku chala visheshamainadi. Nuvvu naa jeevitham loki vachaka prathi roju oka beautiful dream la undi. Nee chirunawwu, nee kaburlu, nee allari... anni naku entho ishtam! 🥰<br><br>
-                Ee kotha edadi neeku chala santhoshanni, success ni tevalani manasara korukuntunnanu. Nenu eppudu nee pakkane untanu, nee prathi kalani nijam cheyadaaniki support ga untanu.<br><br>
+                Nee thoti gadipinachina prathi kshanam naku chala visheshamainadi. Nuvvu naa jeevitham loki vachaka prathi roju oka beautiful dream la undi. Nee chirunavu, nee kaburlu, nee allari... anni naku entho ishtam! 🥰<br><br>
+                Ee 26th year kuda neeku chala santhoshanni, success ni tevalani manasara korukuntunnanu. Nenu eppudu nee pakkane untanu, nee prathi kalani nijam cheyadaaniki support ga untanu.<br><br>
                 Happy Birthday once again Kothi! Keep smiling always! 🥳💖<br><br>
                 Forever & Always Yours,<br>
-                <b>Vishwa ❤️</b>
+                <b>Viswa ❤️</b>
             </div>
         </div>
 
+        <!-- COUPLE FLOWER ART ANIMATION GRAPHIC -->
         <div class="quote-banner">"For the one who makes my world beautiful."</div>
+        <div class="couple-art-container">
+            <svg class="couple-art" viewBox="0 0 300 220" xmlns="http://www.w3.org/2000/svg">
+                <rect width="300" height="220" rx="15" fill="#181818"/>
+                <!-- Boy holding flower bouquet for Girl -->
+                <circle cx="100" cy="70" r="22" fill="#ffb8b8"/>
+                <path d="M85 130 C 85 95, 115 95, 115 130 Z" fill="#4a69bd"/>
+                <circle cx="200" cy="75" r="20" fill="#ffb8b8"/>
+                <path d="M185 130 C 185 100, 215 100, 215 130 Z" fill="#e84393"/>
+                <!-- Bouquet -->
+                <path d="M135 110 L150 90 L165 110 Z" fill="#78e08f"/>
+                <circle cx="145" cy="88" r="8" fill="#e17055"/>
+                <circle cx="155" cy="88" r="8" fill="#d63031"/>
+                <circle cx="150" cy="80" r="9" fill="#e84393"/>
+                <!-- Floating Hearts -->
+                <path d="M150 45 C 150 35, 135 35, 135 45 C 135 55, 150 65, 150 70 C 150 65, 165 55, 165 45 C 165 35, 150 35, 150 45 Z" fill="#ff7675"/>
+            </svg>
+        </div>
 
+        <!-- POLAROID GALLERY WITH PERFECT FACE FITTING -->
         <div class="quote-banner" style="font-size:1.1rem; color:#ff7675;">Beautiful Memories ✨</div>
         <div class="polaroid-stack">
             <div class="polaroid-card">
                 <img src="1001147362.webp" alt="Memory 1">
-                <div class="card-tag">#01 • The Cutest Smile</div>
+                <div class="card-tag">#01 • My Favorite Person</div>
             </div>
             <div class="polaroid-card">
                 <img src="1000819207.jpg" alt="Memory 2">
-                <div class="card-tag">#02 • My Favorite Person</div>
+                <div class="card-tag">#02 • The Cutest Smile</div>
             </div>
             <div class="polaroid-card">
                 <img src="1000819239.jpg" alt="Memory 3">
-                <div class="card-tag">#03 • Precious Moments</div>
+                <div class="card-tag">#03 • Simply Beautiful</div>
             </div>
             <div class="polaroid-card">
                 <img src="1000543864.jpg" alt="Memory 4">
-                <div class="card-tag">#04 • Simply Beautiful</div>
+                <div class="card-tag">#04 • Precious Moments</div>
             </div>
             <div class="polaroid-card">
                 <img src="1000317110.jpg" alt="Memory 5">
@@ -105,13 +142,15 @@
             </div>
         </div>
 
+        <!-- SURPRISE CANDY TRIGGER -->
         <div class="quote-banner" style="font-size: 1.1rem;">You're the sweetest part of my life. 🍯</div>
         <button class="btn-surprise" onclick="showSweetSurprise()">✨ Tap here for a surprise</button>
         <div id="surprise-sweet" class="surprise-box">
             <h3 style="color:#ff7675; margin-bottom:10px;">Because you deserve all the sweetness in the world! 🍫🍬</h3>
-            <p style="font-size:0.9rem; color:#ccc;">"Nee navvu naa prathi rojuny bright ga maarustundi. Always be happy, my love!"</p>
+            <p style="font-size:0.9rem; color:#ccc;">"Nee navvu naa prathi rojuni bright ga maarustundi. Always be happy, my love!"</p>
         </div>
 
+        <!-- SCRATCH CARD SURPRISE -->
         <div class="quote-banner" style="margin-top:40px;">✨ One Last Surprise Awaits... ✨</div>
         <div class="scratch-container">
             <div class="scratch-secret">
@@ -122,25 +161,29 @@
             <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
         </div>
 
+        <!-- FOOTER LOVE NOTE -->
         <div style="margin:50px 0 20px; font-size:0.9rem; line-height:1.8; color:#b2bec3;">
             "I promise to keep making you smile, supporting your dreams, and reminding you every day how special you are to me."<br><br>
-            <span style="color:#ff7675; font-weight:bold;">Made with Love by Vishwa ❤️</span>
+            <span style="color:#ff7675; font-weight:bold;">Made with Love by Viswa ❤️</span>
         </div>
     </div>
 
     <script>
-        // Floating Hearts Background
-        function createHearts() {
-            for(let i=0; i<15; i++) {
-                const heart = document.createElement('div');
-                heart.classList.add('heart-particle');
-                heart.innerHTML = '❤️';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
-                document.body.appendChild(heart);
+        // Falling Hearts and Flower Petals Generator
+        function createFallingElements() {
+            const symbols = ['❤️', '💖', '🌸', '🌹', '✨'];
+            for(let i = 0; i < 25; i++) {
+                const el = document.createElement('div');
+                el.classList.add('falling-element');
+                el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                el.style.left = Math.random() * 95 + 'vw';
+                el.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                el.style.animationDelay = (Math.random() * 5) + 's';
+                el.style.fontSize = (Math.random() * 12 + 16) + 'px';
+                document.body.appendChild(el);
             }
         }
-        createHearts();
+        createFallingElements();
 
         // Toggle Letter Display
         function toggleLetter() {
